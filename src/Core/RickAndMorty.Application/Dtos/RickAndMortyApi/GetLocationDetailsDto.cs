@@ -15,6 +15,6 @@ namespace RickAndMorty.Application.RickAndMortyApi.Dtos
         public string dimension { get; set; }
         public string url { get; set; }
         public string created { get; set; }
-        public List<GetCharacterDto> character { get; set; }
+        public List<GetCharacterDto> residents { get; set; }
     }
 }

@@ -33,9 +33,16 @@ namespace RickAndMorty.Application.RickAndMortyApi.Dtos
         {
             get
             {
-                String urlWithoutPrefix = location.url.Substring(7);
-                String[] urlSegments = urlWithoutPrefix.Split("/");
-                return urlSegments[urlSegments.Length - 1];
+                if(location.url != null && location.url.Length > 8)
+                {
+                    String urlWithoutPrefix = location.url.Substring(7);
+                    String[] urlSegments = urlWithoutPrefix.Split("/");
+                    return urlSegments[urlSegments.Length - 1];
+                } 
+                else
+                {
+                    return "";
+                }
             }
         }
 
@@ -44,12 +51,19 @@ namespace RickAndMorty.Application.RickAndMortyApi.Dtos
         { 
             get 
             {
-               return episode.Select(url =>
+              if(episode != null && episode.Count > 0)
                 {
-                    String urlWithoutPrefix = url.Substring(7);
-                    String[] urlSegments = urlWithoutPrefix.Split("/");
-                    return urlSegments[urlSegments.Length - 1];
-                }).ToList();
+                    return episode.Select(url =>
+                    {
+                        String urlWithoutPrefix = url.Substring(7);
+                        String[] urlSegments = urlWithoutPrefix.Split("/");
+                        return urlSegments[urlSegments.Length - 1];
+                    }).ToList();
+                }
+                else
+                {
+                    return new List<string>();
+                }
             } 
         }
 

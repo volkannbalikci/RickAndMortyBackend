@@ -15,5 +15,16 @@ namespace RickAndMorty.Infrastructure.Constants
 
         public static string PageIndexEquals(int pageIndex) => $"?page={pageIndex + 1}";
 
+
+        public const string ErrorTitle = "Hata";
+        public const string SuccessfulTitle = "Başarılı";
+        public const string InformationTitle = "Bilgi";
+        public const string WarningTitle = "Dikkat";
+
+        public const string CharactersListedMessage = "Karakterler Listelendi";
+        public const string EpisodesListedMessage = "Bölümler Listelendi";
+        public const string LocationsListedMessage = "Konumlar Listelendi";
+
+
     }
 }

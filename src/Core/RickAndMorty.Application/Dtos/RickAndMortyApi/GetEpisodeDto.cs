@@ -10,17 +10,24 @@ namespace RickAndMorty.Application.RickAndMortyApi.Dtos
         public string episode { get; set; }
         public string url { get; set; }
         public string created { get; set; }
-        public List<string> character { get; set; }
+        public List<string> characters { get; set; }
         public List<string> characterIdList
         {
             get
             {
-                return character.Select( url =>
+               if(characters != null && characters.Count > 0)
                 {
-                    String urlWithoutPrefix = url.Substring(7);
-                    String[] urlSegments = urlWithoutPrefix.Split("/");
-                    return urlSegments[urlSegments.Length - 1];
-                }).ToList();
+                    return characters.Select(url =>
+                    {
+                        String urlWithoutPrefix = url.Substring(7);
+                        String[] urlSegments = urlWithoutPrefix.Split("/");
+                        return urlSegments[urlSegments.Length - 1];
+                    }).ToList();
+                }
+                else
+                {
+                    return new List<string>();
+                }
             }
         }
     }

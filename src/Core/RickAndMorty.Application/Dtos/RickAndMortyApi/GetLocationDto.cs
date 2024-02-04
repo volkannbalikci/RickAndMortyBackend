@@ -10,17 +10,24 @@ namespace RickAndMorty.Application.RickAndMortyApi.Dtos
         public string dimension { get; set; }
         public string url { get; set; }        
         public string created { get; set; }
-        public List<string> character { get; set; }
-        public List<string> characterIdList
+        public List<string> residents { get; set; }
+        public List<string> residentIdList
         {
             get
             {
-                return character.Select(url =>
+                if (residents != null && residents.Count > 0)
                 {
-                    String urlWithoutPrefix = url.Substring(7);
-                    String[] urlSegments = urlWithoutPrefix.Split("/");
-                    return urlSegments[urlSegments.Length - 1];
-                }).ToList();
+                    return residents.Select(url =>
+                    {
+                        String urlWithoutPrefix = url.Substring(7);
+                        String[] urlSegments = urlWithoutPrefix.Split("/");
+                        return urlSegments[urlSegments.Length - 1];
+                    }).ToList();
+                } else
+                {
+                    return new List<String>();
+                }
+             
             }
         }
     }
