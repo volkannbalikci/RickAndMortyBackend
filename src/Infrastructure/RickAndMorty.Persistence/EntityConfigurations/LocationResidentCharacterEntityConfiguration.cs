@@ -1,0 +1,24 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RickAndMorty.Domain.Entities;
+using RickAndMorty.Persistence.EntityFramework.Contexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RickAndMorty.Persistence.EntityConfigurations;
+
+public class LocationResidentCharacterEntityConfiguration : BaseEntityConfiguration<LocationResidentCharacter>
+{
+    public override void Configure(EntityTypeBuilder<LocationResidentCharacter> builder)
+    {
+        base.Configure(builder);
+
+        builder.ToTable("LocationResidentCharacter", RickyAndMortyDbContext.DEFAULT_SCHEMA);
+
+        builder.HasOne(i => i.Location).WithMany(i => i.LocationResidentCharacters).HasForeignKey(i => i.LocationId);
+        builder.HasOne(i => i.ResidentCharacter).WithMany(i => i.LocationResidentCharacters).HasForeignKey(i => i.ResidentCharacterId);
+    }
+}
